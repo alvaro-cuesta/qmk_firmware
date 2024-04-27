@@ -124,7 +124,7 @@ bool dip_switch_update_user(uint8_t index, bool active) {
 
 #endif // DIP_SWITCH_ENABLE
 
-#if defined(RGB_MATRIX_ENABLE) && defined(SCROLL_LOCK_LED_INDEX)
+#if defined(RGB_MATRIX_ENABLE) && (defined(SCROLL_LOCK_LED_INDEX) || defined(NKRO_LED_INDEX))
 
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 #    if defined(SCROLL_LOCK_LED_INDEX)
@@ -136,6 +136,17 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         }
     }
 #    endif // SCROLL_LOCK_LED_INDEX
+
+#    if defined(NKRO_LED_INDEX)
+    if (keymap_config.nkro) {
+        RGB_MATRIX_INDICATOR_SET_COLOR(NKRO_LED_INDEX, 255, 255, 255);
+    } else {
+        if (!rgb_matrix_get_flags()) {
+            RGB_MATRIX_INDICATOR_SET_COLOR(NKRO_LED_INDEX, 0, 0, 0);
+        }
+    }
+#    endif // NKRO_LED_INDEX
+
     return true;
 }
 
