@@ -8,3 +8,6 @@
 
 /* Enable scroll-lock LED  */
 #define SCROLL_LOCK_LED_INDEX 14
+
+/* Enable NKRO LED */
+#define NKRO_LED_INDEX 85
