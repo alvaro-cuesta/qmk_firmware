@@ -16,10 +16,9 @@
 
 #include QMK_KEYBOARD_H
 #include "keychron_common.h"
+#include "rgb_matrix.h"
 
-// clang-format off
-
-enum layers{
+enum layers {
   MAC_BASE,
   MAC_FN1,
   MAC_FN2,
@@ -27,6 +26,17 @@ enum layers{
   WIN_FN1,
   WIN_FN2
 };
+
+enum custom_keycodes_user {
+    RGBE_IN = SAFE_RANGE,
+    RGBE_DE,
+    // RGBE_VA,
+    RGBE_HU,
+    RGBE_SA,
+    RGBE_SP
+};
+
+// clang-format off
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Mac
@@ -43,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,     _______,        _______,  _______,  _______,        _______,  _______,  _______,  _______,
         RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                     _______,  _______,  _______,        _______,  _______,  _______,
         _______,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  _______,  _______,  _______,  _______,  _______,  _______,  _______,     _______,                                            _______,  _______,  _______,  _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  NK_TOGG,  _______,  _______,  _______,  _______,               _______,                  _______,                  _______,  _______,  _______,
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  NK_TOGG,  _______,  RGBE_HU,  RGBE_SA,  RGBE_SP,               _______,                  _______,                  _______,  _______,  _______,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,     _______,        _______,  _______,  _______,        _______,            _______,  _______),
 
     [MAC_FN2] = LAYOUT_iso_110(
@@ -68,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,     _______,        _______,  _______,  _______,        _______,  _______,  _______,  _______,
         RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                     _______,  _______,  _______,        _______,  _______,  _______,
         _______,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  _______,  _______,  _______,  _______,  _______,  _______,  _______,     _______,                                            _______,  _______,  _______,  _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  NK_TOGG,  _______,  _______,  _______,  _______,               _______,                  _______,                  _______,  _______,  _______,
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  NK_TOGG,  _______,  RGBE_HU,  RGBE_SA,  RGBE_SP,               _______,                  _______,                  _______,  _______,  _______,
         _______,  KC_APP,   _______,                                _______,                                _______,  KC_APP,   _______,     _______,        _______,  _______,  _______,        _______,            _______,  _______),
 
     [WIN_FN2] = LAYOUT_iso_110(
@@ -83,22 +93,105 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [MAC_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
-    [MAC_FN1]  = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI) },
+    [MAC_FN1]  = {ENCODER_CCW_CW(RGBE_DE, RGBE_IN) },
     [MAC_FN2]  = {ENCODER_CCW_CW(_______, _______) },
     [WIN_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
-    [WIN_FN1]  = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI) },
+    [WIN_FN1]  = {ENCODER_CCW_CW(RGBE_DE, RGBE_IN) },
     [WIN_FN2]  = {ENCODER_CCW_CW(_______, _______) }
 };
 #endif // ENCODER_MAP_ENABLE
 
 // clang-format on
 
+#if defined(RGB_MATRIX_ENABLE) && !defined(RGB_MATRIX_DISABLE_KEYCODES)
+
+enum rgb_push_state {
+    RGB_PUSH_VAL = 0x1,
+    RGB_PUSH_HUE = 0x2,
+    RGB_PUSH_SAT = 0x4,
+    RGB_PUSH_SPD = 0x8
+};
+
+enum rgb_push_state push_state = RGB_PUSH_VAL;
+
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_keychron(keycode, record)) {
         return false;
     }
+
+    switch (keycode) {
+        case RGBE_IN:
+            #ifndef RGB_TRIGGER_ON_KEYDOWN
+                if (!record->event.pressed) {
+            #else
+                if (record->event.pressed) {
+            #endif
+                switch (push_state) {
+                    case RGB_PUSH_VAL:
+                        rgb_matrix_increase_val();
+                        break;
+                    case RGB_PUSH_HUE:
+                        rgb_matrix_increase_hue();
+                        break;
+                    case RGB_PUSH_SAT:
+                        rgb_matrix_increase_sat();
+                        break;
+                    case RGB_PUSH_SPD:
+                        rgb_matrix_increase_speed();
+                        break;
+                }
+            }
+            return false;
+        case RGBE_DE:
+            #ifndef RGB_TRIGGER_ON_KEYDOWN
+                if (!record->event.pressed) {
+            #else
+                if (record->event.pressed) {
+            #endif
+                switch (push_state) {
+                    case RGB_PUSH_VAL:
+                        rgb_matrix_decrease_val();
+                        break;
+                    case RGB_PUSH_HUE:
+                        rgb_matrix_decrease_hue();
+                        break;
+                    case RGB_PUSH_SAT:
+                        rgb_matrix_decrease_sat();
+                        break;
+                    case RGB_PUSH_SPD:
+                        rgb_matrix_decrease_speed();
+                        break;
+                }
+            }
+            return false;
+        case RGBE_HU:
+            if (record->event.pressed) {
+                push_state = RGB_PUSH_HUE;
+            } else {
+                push_state = RGB_PUSH_VAL;
+            }
+            return false;
+        case RGBE_SA:
+            if (record->event.pressed) {
+                push_state = RGB_PUSH_SAT;
+            } else {
+                push_state = RGB_PUSH_VAL;
+            }
+            return false;
+        case RGBE_SP:
+            if (record->event.pressed) {
+                push_state = RGB_PUSH_SPD;
+            } else {
+                push_state = RGB_PUSH_VAL;
+            }
+            return false;
+    }
+
     return true;
 }
+
+#endif // RGB_MATRIX_ENABLE...
 
 void housekeeping_task_user(void) {
     housekeeping_task_keychron();
