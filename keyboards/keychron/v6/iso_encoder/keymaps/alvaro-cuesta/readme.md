@@ -20,8 +20,11 @@ This keymap is based on the default Keychron layout, which has some Keychron-spe
 - [x] Enable scroll-lock key and LED indicator. It is positioned in the microphone key (Cortana in Windows) just like
       in traditional keyboards.
 - [x] Enable NKRO LED indicator. If NKRO is on, the `N` key will be lit.
-- [ ] Rework rotary encoder so that it can control volume + RGB lightness, hue, saturation, speed without the need for
-      more layers.
+- [x] Additional rotary encoder RGB controls. By default `Fn+RotCw` will increase brightness and `Fn+RotCcw` will
+      decrease it. This adds a few additional controls so that:
+    - `Fn+,+RotCw/Ccw` will in/decrease hue.
+    - `Fn+.+RotCw/Ccw` will in/decrease saturation.
+    - `Fn+-+RotCw/Ccw` will in/decrease speed.
 - [ ] Enable all (or at least more) RGB effects.
 - [ ] Assign RGB effects to specific keys individually.
 - [ ] Since RGB controls will be assigned to the rotary encoder + specific effect keys, remove all RGB control
