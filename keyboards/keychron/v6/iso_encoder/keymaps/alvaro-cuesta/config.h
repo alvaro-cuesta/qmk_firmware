@@ -5,3 +5,6 @@
 
 /* Enable num-lock LED */
 #define NUM_LOCK_LED_INDEX 37
+
+/* Enable scroll-lock LED  */
+#define SCROLL_LOCK_LED_INDEX 14
