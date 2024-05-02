@@ -25,12 +25,12 @@ This keymap is based on the default Keychron layout, which has some Keychron-spe
     - `Fn+,+RotCw/Ccw` will in/decrease hue.
     - `Fn+.+RotCw/Ccw` will in/decrease saturation.
     - `Fn+-+RotCw/Ccw` will in/decrease speed.
+- [x] Force indicators to be off even when colored by an RGB effect (see `FORCE_TURN_OFF_INDICATORS` define). This
+      reduces confusion on whether the indicator is on or off.
 - [ ] Enable all (or at least more) RGB effects.
 - [ ] Assign RGB effects to specific keys individually.
 - [ ] Since RGB controls will be assigned to the rotary encoder + specific effect keys, remove all RGB control
       duplicates.
-- [ ] Make indicator lights smarter, since they can sometimes be confused with RGB effects. Try to make them just be
-      ignored on RGB effects, or maybe somehow force them to be contrasting with the current RGB effect in place.
 - [ ] Host controlled colors
     - Possibly through custom Via commands (since we want both Via and the host-controlled colors, but they conflict if
       we want to use raw HID).

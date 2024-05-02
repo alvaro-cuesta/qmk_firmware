@@ -11,3 +11,6 @@
 
 /* Enable NKRO LED */
 #define NKRO_LED_INDEX 85
+
+/* Force turn off indicator LEDs */
+#define FORCE_TURN_OFF_INDICATORS
