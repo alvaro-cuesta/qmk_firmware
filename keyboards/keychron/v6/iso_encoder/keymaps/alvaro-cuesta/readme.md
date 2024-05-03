@@ -35,7 +35,7 @@ This keymap is based on the default Keychron layout, which has some Keychron-spe
       duplicates.
 - [ ] Host controlled colors
     - Possibly through custom Via commands (since we want both Via and the host-controlled colors, but they conflict if
-      we want to use raw HID).
+      we want to use raw HID) or just raw HID (`raw_hid_receive`).
     - [ ] Implement Discord microphone/deafen status indicator in F13/F14 (which are the keys I use at toggle hotkeys
           in Discord).
 - [ ] Dynamic caps/scroll/num/nkro lock indicators. They are currently hardcoded via `#define` but it might be
