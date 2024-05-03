@@ -42,5 +42,6 @@ This keymap is based on the default Keychron layout, which has some Keychron-spe
       interesting to infer the actual indicator LED indices from current keymap (ideally even accounting for remaps via
       Via).
 - [ ] Add some sort of quick language switch for Windows so that I can switch between EN and ES layouts easily.
+      (`LGUI(KC_SPACE)`?)
 - [ ] Better HSV mapping (`rgb_matrix_hsv_to_rgb`) since LED response across RGB is not linear, which leads to worse
       colors.

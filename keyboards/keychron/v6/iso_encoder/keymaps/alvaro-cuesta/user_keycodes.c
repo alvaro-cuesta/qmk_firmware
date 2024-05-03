@@ -23,13 +23,13 @@
 #if defined(RGB_MATRIX_ENABLE) && !defined(RGB_MATRIX_DISABLE_KEYCODES)
 
 enum rgb_push_state {
-    RGB_PUSH_VAL = 0x1,
-    RGB_PUSH_HUE = 0x2,
-    RGB_PUSH_SAT = 0x4,
-    RGB_PUSH_SPD = 0x8
+    RGB_PUSH_NONE = 0x0,
+    RGB_PUSH_HUE = 0x1,
+    RGB_PUSH_SAT = 0x2,
+    RGB_PUSH_SPD = 0x4
 };
 
-enum rgb_push_state push_state = RGB_PUSH_VAL;
+enum rgb_push_state push_state = RGB_PUSH_NONE;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_keychron(keycode, record)) {
@@ -39,67 +39,69 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case RGBE_IN:
             #ifndef RGB_TRIGGER_ON_KEYDOWN
-                if (!record->event.pressed) {
+            if (!record->event.pressed) {
             #else
-                if (record->event.pressed) {
+            if (record->event.pressed) {
             #endif
-                switch (push_state) {
-                    case RGB_PUSH_VAL:
-                        rgb_matrix_increase_val();
-                        break;
-                    case RGB_PUSH_HUE:
-                        rgb_matrix_increase_hue();
-                        break;
-                    case RGB_PUSH_SAT:
-                        rgb_matrix_increase_sat();
-                        break;
-                    case RGB_PUSH_SPD:
-                        rgb_matrix_increase_speed();
-                        break;
+                if (HAS_FLAGS(push_state, RGB_PUSH_HUE)) {
+                    rgb_matrix_increase_hue();
+                }
+
+                if (HAS_FLAGS(push_state, RGB_PUSH_SAT)) {
+                    rgb_matrix_increase_sat();
+                }
+
+                if (HAS_FLAGS(push_state, RGB_PUSH_SPD)) {
+                    rgb_matrix_increase_speed();
+                }
+
+                if (push_state == RGB_PUSH_NONE) {
+                    rgb_matrix_increase_val();
                 }
             }
             return false;
         case RGBE_DE:
             #ifndef RGB_TRIGGER_ON_KEYDOWN
-                if (!record->event.pressed) {
+            if (!record->event.pressed) {
             #else
-                if (record->event.pressed) {
+            if (record->event.pressed) {
             #endif
-                switch (push_state) {
-                    case RGB_PUSH_VAL:
-                        rgb_matrix_decrease_val();
-                        break;
-                    case RGB_PUSH_HUE:
-                        rgb_matrix_decrease_hue();
-                        break;
-                    case RGB_PUSH_SAT:
-                        rgb_matrix_decrease_sat();
-                        break;
-                    case RGB_PUSH_SPD:
-                        rgb_matrix_decrease_speed();
-                        break;
+                if (HAS_FLAGS(push_state, RGB_PUSH_HUE)) {
+                    rgb_matrix_decrease_hue();
+                }
+
+                if (HAS_FLAGS(push_state, RGB_PUSH_SAT)) {
+                    rgb_matrix_decrease_sat();
+                }
+
+                if (HAS_FLAGS(push_state, RGB_PUSH_SPD)) {
+                    rgb_matrix_decrease_speed();
+                }
+
+                if (push_state == RGB_PUSH_NONE) {
+                    rgb_matrix_decrease_val();
                 }
             }
             return false;
         case RGBE_HU:
             if (record->event.pressed) {
-                push_state = RGB_PUSH_HUE;
+                push_state |= RGB_PUSH_HUE;
             } else {
-                push_state = RGB_PUSH_VAL;
+                push_state &= ~RGB_PUSH_HUE;
             }
             return false;
         case RGBE_SA:
             if (record->event.pressed) {
-                push_state = RGB_PUSH_SAT;
+                push_state |= RGB_PUSH_SAT;
             } else {
-                push_state = RGB_PUSH_VAL;
+                push_state &= ~RGB_PUSH_SAT;
             }
             return false;
         case RGBE_SP:
             if (record->event.pressed) {
-                push_state = RGB_PUSH_SPD;
+                push_state |= RGB_PUSH_SPD;
             } else {
-                push_state = RGB_PUSH_VAL;
+                push_state &= ~RGB_PUSH_SPD;
             }
             return false;
     }
