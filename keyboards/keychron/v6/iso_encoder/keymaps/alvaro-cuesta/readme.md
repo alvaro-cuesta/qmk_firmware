@@ -27,7 +27,9 @@ This keymap is based on the default Keychron layout, which has some Keychron-spe
     - `Fn+-+RotCw/Ccw` will in/decrease speed.
 - [x] Force indicators to be off even when colored by an RGB effect (see `FORCE_TURN_OFF_INDICATORS` define). This
       reduces confusion on whether the indicator is on or off.
-- [ ] Enable all (or at least more) RGB effects.
+- [x] Enabled more RGB effects, disabled some ugly ones, and set some nice defaults for RGB matrix.
+- [x] Reduce RGB matrix parameter (HSV) change speed since we can control it with the rotary encoder, which is faster
+      than pressing keys. In turn this allows for more precision with the rotary encoder.
 - [ ] Assign RGB effects to specific keys individually.
 - [ ] Since RGB controls will be assigned to the rotary encoder + specific effect keys, remove all RGB control
       duplicates.
@@ -40,3 +42,5 @@ This keymap is based on the default Keychron layout, which has some Keychron-spe
       interesting to infer the actual indicator LED indices from current keymap (ideally even accounting for remaps via
       Via).
 - [ ] Add some sort of quick language switch for Windows so that I can switch between EN and ES layouts easily.
+- [ ] Better HSV mapping (`rgb_matrix_hsv_to_rgb`) since LED response across RGB is not linear, which leads to worse
+      colors.
