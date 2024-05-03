@@ -1,7 +1,24 @@
-#include QMK_KEYBOARD_H
-#include "user_keycodes.h"
-// Do I need these includes, or is the `QMK_KEYBOARD_H` above just not working for me?
+/* Copyright 2024 @ Alvaro Cuesta (https://github.com/alvaro-cuesta/)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "rgb_matrix.h"
+
+#include "keychron_common.h"
+
+#include "user_keycodes.h"
 
 #if defined(RGB_MATRIX_ENABLE) && !defined(RGB_MATRIX_DISABLE_KEYCODES)
 
