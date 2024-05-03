@@ -25,12 +25,14 @@ This keymap is based on the default Keychron layout, which has some Keychron-spe
     - `Fn+,+RotCw/Ccw` will in/decrease hue.
     - `Fn+.+RotCw/Ccw` will in/decrease saturation.
     - `Fn+-+RotCw/Ccw` will in/decrease speed.
+    - `Fn+RShift+RotCw/Ccw` will in/decrease effect.
 - [x] Force indicators to be off even when colored by an RGB effect (see `FORCE_TURN_OFF_INDICATORS` define). This
       reduces confusion on whether the indicator is on or off.
 - [x] Enabled more RGB effects, disabled some ugly ones, and set some nice defaults for RGB matrix.
 - [x] Reduce RGB matrix parameter (HSV) change speed since we can control it with the rotary encoder, which is faster
       than pressing keys. In turn this allows for more precision with the rotary encoder.
 - [ ] Assign RGB effects to specific keys individually.
+- [ ] Assign RGB colors to specific keys individually.
 - [ ] Since RGB controls will be assigned to the rotary encoder + specific effect keys, remove all RGB control
       duplicates.
 - [ ] Host controlled colors

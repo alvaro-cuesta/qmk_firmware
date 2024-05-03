@@ -26,7 +26,8 @@ enum rgb_push_state {
     RGB_PUSH_NONE = 0x0,
     RGB_PUSH_HUE = 0x1,
     RGB_PUSH_SAT = 0x2,
-    RGB_PUSH_SPD = 0x4
+    RGB_PUSH_SPD = 0x4,
+    RGB_PUSH_EFF = 0x8
 };
 
 enum rgb_push_state push_state = RGB_PUSH_NONE;
@@ -55,6 +56,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     rgb_matrix_increase_speed();
                 }
 
+                if (HAS_FLAGS(push_state, RGB_PUSH_EFF)) {
+                    rgb_matrix_step();
+                }
+
                 if (push_state == RGB_PUSH_NONE) {
                     rgb_matrix_increase_val();
                 }
@@ -76,6 +81,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
                 if (HAS_FLAGS(push_state, RGB_PUSH_SPD)) {
                     rgb_matrix_decrease_speed();
+                }
+
+                if (HAS_FLAGS(push_state, RGB_PUSH_EFF)) {
+                    rgb_matrix_step_reverse();
                 }
 
                 if (push_state == RGB_PUSH_NONE) {
@@ -102,6 +111,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 push_state |= RGB_PUSH_SPD;
             } else {
                 push_state &= ~RGB_PUSH_SPD;
+            }
+            return false;
+        case RGBE_EF:
+            if (record->event.pressed) {
+                push_state |= RGB_PUSH_EFF;
+            } else {
+                push_state &= ~RGB_PUSH_EFF;
             }
             return false;
     }
