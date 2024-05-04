@@ -26,3 +26,7 @@
 #define NKRO_LED_INDEX 85 // N key
 
 #define FORCE_TURN_OFF_INDICATORS // force turning off indicators when RGB effects are on
+
+#define DISCORD_MUTE_LED_INDEX 16 // circle macro key -- F13 in our keymap which we bound to Discord mute hotkey
+
+#define DISCORD_DEAFEN_LED_INDEX 17 // triangle macro key -- F14 in our keymap which we bound to Discord deafen hotkey

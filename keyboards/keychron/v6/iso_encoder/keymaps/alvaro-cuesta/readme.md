@@ -6,7 +6,7 @@ This keymap is based on the default Keychron layout, which has some Keychron-spe
 
 - [x] Fix macro keys (circle, triangle, square, cross) in Win so that they're no longer transparent into the Mac layouts
       and instead always function as F13-16
-- [x] Add an additional layer for both Mac and Windows. This layer is empty (transparent) and currently not reachable, 
+- [x] Add an additional layer for both Mac and Windows. This layer is empty (transparent) and currently not reachable,
       but can be configured through Via. This means default Windows layer is now 3 instead of 2.
 - [x] Remap keys for default Windows layout:
     - Replace screenshot (right above `ins`) with simple and default `Print Screen`.
@@ -33,15 +33,17 @@ This keymap is based on the default Keychron layout, which has some Keychron-spe
       than pressing keys. In turn this allows for more precision with the rotary encoder.
 - Reorganize RGB keymap now that RGB controls are assigned to the rotary encoder (thus having lots of duplicates in the
   FN1 keymap that are already covered by the rotary encoder).
-    - [X] Assign individual RGB effects to specific keys. `1-'`: simple effects. `Q-O`: rainbow effects. `A-K`: 
+    - [X] Assign individual RGB effects to specific keys. `1-'`: simple effects. `Q-O`: rainbow effects. `A-K`:
           reactive effects. `Z-B`: raindrop effects.
         - [ ] Reorganize so similar effects are close together vertically and horizontally.
     - [ ] Assign preset colors to specific keys.
-- [ ] Host controlled colors
-    - Possibly through custom Via commands (since we want both Via and the host-controlled colors, but they conflict if
-      we want to use raw HID) or just raw HID (`raw_hid_receive`).
-    - [ ] Implement Discord microphone/deafen status indicator in F13/F14 (which are the keys I use at toggle hotkeys
-          in Discord).
+- [x] Host controlled colors
+    - [x] Partial support via LED indicator setting ([host app WIP](https://github.com/alvaro-cuesta/qmk_firmware_host/)).
+          Discord self-mute/deafen status is shown on circle/triangle keys, which are bound to `F13`/`F14` and are the
+          hotkeys I use respectively. The status must be periodically refreshed from the host or the keyboard will stop
+          showing their status (assumes the host side is dead or not present).
+    - [ ] Full individual-LED control? Could replace the specific indicators above and let the host have full control
+          over indicator behavior.
 - [ ] Dynamic caps/scroll/num/nkro lock indicators. They are currently hardcoded via `#define` but it might be
       interesting to infer the actual indicator LED indices from current keymap (ideally even accounting for remaps via
       Via).
