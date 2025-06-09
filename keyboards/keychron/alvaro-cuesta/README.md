@@ -1,22 +1,17 @@
-# Personal Keychron V6 ISO Encoder with Knob for Álvaro Cuesta
+# Personal Keychron V3/V6 ISO Encoder with Knob for Álvaro Cuesta
 
 This keymap is based on the default Keychron layout, which has some Keychron-specific niceties along with Via supprt.
 
 ## Custom features
 
-- [x] Fix macro keys (circle, triangle, square, cross) in Win so that they're no longer transparent into the Mac layouts
-      and instead always function as F13-16
 - [x] Add an additional layer for both Mac and Windows. This layer is empty (transparent) and currently not reachable,
       but can be configured through Via. This means default Windows layer is now 3 instead of 2.
 - [x] Remap keys for default Windows layout:
     - Replace screenshot (right above `ins`) with simple and default `Print Screen`.
     - Replace Cortana (right above `home`) with `Scroll Lock`.
-    - Replace `RGB MOD` (right above `pgup`) with `Pause`.
+    - Replace `RM NEXT` (right above `pgup`) with `Pause`.
     - Power off with `Fn+Pause`.
-    - Via macro 0 with `Fn+Cross`.
     - Menu (application) key when pressing `FN+Win`.
-- [x] Enable num-lock LED indicator. This was enabled on factory firmware as far as I know, but for some reason it was
-      disabled in QMK source.
 - [x] Enable scroll-lock key and LED indicator. It is positioned in the microphone key (Cortana in Windows) just like
       in traditional keyboards.
 - [x] Enable NKRO LED indicator. If NKRO is on, the `N` key will be lit.
@@ -51,3 +46,12 @@ This keymap is based on the default Keychron layout, which has some Keychron-spe
       (`LGUI(KC_SPACE)`?)
 - [ ] Better HSV mapping (`rgb_matrix_hsv_to_rgb`) since LED response across RGB is not linear, which leads to worse
       colors. Or perhaps I need to hook onto the RGB function and map there.
+
+### V6 only
+
+- [x] Fix macro keys (circle, triangle, square, cross) in Win so that they're no longer transparent into the Mac layouts
+      and instead always function as F13-16
+- [x] Remap keys for default Windows layout:
+    - Via macro 0 with `Fn+Cross`.
+- [x] Enable num-lock LED indicator. This was enabled on factory firmware as far as I know, but for some reason it was
+      disabled in QMK source.

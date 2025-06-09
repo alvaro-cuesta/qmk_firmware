@@ -4,7 +4,9 @@ ENCODER_MAP_ENABLE = yes
 VPATH += keyboards/keychron/common
 SRC += keychron_common.c
 
+VPATH += keyboards/keychron/alvaro-cuesta
 SRC += user_indicators.c
 SRC += user_keycodes.c
+
 SRC += user_keymap.c
 SRC += user_layers.c
