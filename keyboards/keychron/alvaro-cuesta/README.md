@@ -7,6 +7,7 @@ This keymap is based on the default Keychron layout, which has some Keychron-spe
 - [x] Add an additional layer for both Mac and Windows.
     - Holding `Fn` switches to this new layer, which has the old FN1 layer functionality.
     - Holding `CAPS LOCK` switches to the old FN1 layer, which is now transparent to the base layer.
+- [x] Add bootloader key on `Fn+ESC`.
 - [x] Remap keys for default Windows layout:
     - Replace screenshot (right above `ins`) with simple and default `Print Screen`.
     - Replace Cortana (right above `home`) with `Scroll Lock`.
