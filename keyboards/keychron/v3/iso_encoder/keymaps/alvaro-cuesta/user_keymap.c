@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  RGBM_1,   RGBM_2,   RGBM_3,   RGBM_4,   RGBM_5,   RGBM_6,   RGBM_7,   RGBM_8,   RGBM_9,   RGBM_0,   RGBM_AP,  _______,     _______,        _______,  _______,  _______,
         RM_TOGG,  RGBM_Q,   RGBM_W,   RGBM_E,   RGBM_R,   RGBM_T,   RGBM_Y,   RGBM_U,   RGBM_I,   RGBM_O,   RGBM_P,   _______,  _______,                     _______,  _______,  _______,
         _______,  RGBM_A,   RGBM_S,   RGBM_D,   RGBM_F,   RGBM_G,   RGBM_H,   RGBM_J,   RGBM_K,   RGBM_L,   _______,  _______,  _______,     _______,
-        _______,  RGBM_Z,   RGBM_X,   RGBM_C,   RGBM_V,   RGBM_B,   _______,  NK_TOGG,  RGBE_EF,  RGBE_HU,  RGBE_SA,  RGBE_SP,               _______,                  _______,
+        _______,  _______,  RGBM_Z,   RGBM_X,   RGBM_C,   RGBM_V,   RGBM_B,   NK_TOGG,  RGBE_EF,  RGBE_HU,  RGBE_SA,  RGBE_SP,               _______,                  _______,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,     _______,        _______,  _______,  _______),
 
     [MAC_FN2] = LAYOUT_tkl_f13_iso(
@@ -106,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  RGBM_1,   RGBM_2,   RGBM_3,   RGBM_4,   RGBM_5,   RGBM_6,   RGBM_7,   RGBM_8,   RGBM_9,   RGBM_0,   RGBM_AP,  _______,     _______,        _______,  _______,  _______,
         RM_TOGG,  RGBM_Q,   RGBM_W,   RGBM_E,   RGBM_R,   RGBM_T,   RGBM_Y,   RGBM_U,   RGBM_I,   RGBM_O,   RGBM_P,   _______,  _______,                     _______,  _______,  _______,
         _______,  RGBM_A,   RGBM_S,   RGBM_D,   RGBM_F,   RGBM_G,   RGBM_H,   RGBM_J,   RGBM_K,   RGBM_L,   _______,  _______,  _______,     _______,
-        _______,  RGBM_Z,   RGBM_X,   RGBM_C,   RGBM_V,   RGBM_B,   _______,  NK_TOGG,  RGBE_EF,  RGBE_HU,  RGBE_SA,  RGBE_SP,               _______,                  _______,
+        _______,  _______,  RGBM_Z,   RGBM_X,   RGBM_C,   RGBM_V,   RGBM_B,   NK_TOGG,  RGBE_EF,  RGBE_HU,  RGBE_SA,  RGBE_SP,               _______,                  _______,
         _______,  KC_APP,   _______,                                _______,                                _______,  KC_APP,   _______,     _______,        _______,  _______,  _______),
 
     [WIN_FN2] = LAYOUT_tkl_f13_iso(
