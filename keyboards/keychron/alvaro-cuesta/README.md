@@ -4,8 +4,9 @@ This keymap is based on the default Keychron layout, which has some Keychron-spe
 
 ## Custom features
 
-- [x] Add an additional layer for both Mac and Windows. This layer is empty (transparent) and currently not reachable,
-      but can be configured through Via. This means default Windows layer is now 3 instead of 2.
+- [x] Add an additional layer for both Mac and Windows.
+    - Holding `Fn` switches to this new layer, which has the old FN1 layer functionality.
+    - Holding `CAPS LOCK` switches to the old FN1 layer, which is now transparent to the base layer.
 - [x] Remap keys for default Windows layout:
     - Replace screenshot (right above `ins`) with simple and default `Print Screen`.
     - Replace Cortana (right above `home`) with `Scroll Lock`.
